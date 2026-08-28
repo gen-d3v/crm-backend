@@ -1,4 +1,4 @@
-package com.crmnexus.backend.service.impl.worker.worker;
+package com.crmnexus.backend.service.impl.worker;
 
 import com.crmnexus.backend.dto.Worker;
 import com.crmnexus.backend.service.interfaces.worker.WorkerService;
