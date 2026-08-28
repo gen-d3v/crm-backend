@@ -42,6 +42,24 @@ public class WorkerEntity {
     @Column(name = "personal_id_number")
     private String personalIdNumber;
 
+    protected WorkerEntity() {}
+
+    public WorkerEntity(String birthDate, String email, String firstName, String gender, String houseNumber, Long id,
+                        String lastName, String namePrefix, String personalIdNumber, String phoneNumber, String workerId, String zipCode) {
+        this.birthDate = birthDate;
+        this.email = email;
+        this.firstName = firstName;
+        this.gender = gender;
+        this.houseNumber = houseNumber;
+        this.id = id;
+        this.lastName = lastName;
+        this.namePrefix = namePrefix;
+        this.personalIdNumber = personalIdNumber;
+        this.phoneNumber = phoneNumber;
+        this.workerId = workerId;
+        this.zipCode = zipCode;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
