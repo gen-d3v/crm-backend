@@ -9,5 +9,5 @@ public record Worker(String gender,
                      String houseNumber,
                      String phoneNumber,
                      String email,
-                     String idNumber){
+                     String personalIdNumber){
 }
