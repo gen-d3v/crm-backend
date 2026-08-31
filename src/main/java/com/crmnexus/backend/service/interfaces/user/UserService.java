@@ -6,6 +6,6 @@ import com.crmnexus.backend.dto.response.LoginResponse;
 
 public interface UserService {
 
-    LoginResponse Login(LoginRequest loginRequest);
+    LoginResponse login(LoginRequest loginRequest);
 
 }

@@ -10,22 +10,22 @@ public class WorkerServiceImpl implements WorkerService {
 
 
     @Override
-    public Boolean CreateWorker(Worker worker) {
+    public Boolean createWorker(Worker worker) {
         return null;
     }
 
     @Override
-    public Worker RetrieveWorker(Worker worker) {
+    public Worker retrieveWorker(Worker worker) {
         return null;
     }
 
     @Override
-    public Boolean UpdateWorker(Worker worker) {
+    public Boolean updateWorker(Worker worker) {
         return null;
     }
 
     @Override
-    public Boolean DeleteWorker(Worker worker) {
+    public Boolean deleteWorker(Worker worker) {
         return null;
     }
 }
