@@ -1,11 +1,10 @@
 package com.crmnexus.backend.service.interfaces.user;
 
 
-import com.crmnexus.backend.dto.request.LoginRequest;
-import com.crmnexus.backend.dto.response.LoginResponse;
 
 public interface UserService {
 
-    LoginResponse login(LoginRequest loginRequest);
-
+void updateUser();
+void changePassword(String oldPassword, String newPassword);
+void deleteUser();
 }

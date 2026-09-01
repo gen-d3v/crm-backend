@@ -1,4 +1,4 @@
-package com.crmnexus.backend.exception.httpError;
+package com.crmnexus.backend.exception;
 
 public class UnauthorizedException extends RuntimeException {
     public UnauthorizedException(String message) {super(message);}

@@ -24,13 +24,33 @@ public class UserEntity {
     @Column(nullable = false)
     private String passwordHash;
 
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column()
+    private String lastName;
+
     @Enumerated(EnumType.STRING)
     private Role role;
+
+
+
     protected UserEntity() {}
+
+
+    public UserEntity(String username, String email, String passwordHash, String firstName, String lastName) {
+        this.username = username;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public Role getRole() {
         return role;
     }
+
+
 
     public Long getId() {
         return id;
@@ -51,4 +71,5 @@ public class UserEntity {
     public UUID getUserId() {
         return userId;
     }
+
 }
