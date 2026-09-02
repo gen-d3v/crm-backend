@@ -19,4 +19,11 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(value = UnauthorizedException.class)
+    public ErrorResponse handleUnauthorized( UnauthorizedException exception ) {
+        return new ErrorResponse(
+                HttpStatus.UNAUTHORIZED,
+                exception.getMessage()
+        );
+    }
 }

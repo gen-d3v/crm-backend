@@ -5,12 +5,15 @@ import com.crmnexus.backend.dto.request.RegisterRequest;
 import com.crmnexus.backend.dto.response.LoginResponse;
 import com.crmnexus.backend.dto.response.RegisterResponse;
 import com.crmnexus.backend.entities.UserEntity;
+import com.crmnexus.backend.enums.Role;
 import com.crmnexus.backend.exception.ConflictException;
 import com.crmnexus.backend.exception.UnauthorizedException;
 import com.crmnexus.backend.repository.UserRepository;
 import com.crmnexus.backend.service.interfaces.auth.MeService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class MeServiceImpl implements MeService {
@@ -45,18 +48,23 @@ public class MeServiceImpl implements MeService {
 
     @Override
     public RegisterResponse register(RegisterRequest registerRequest) {
-        if (emailExists(registerRequest.email())) throw new ConflictException("Invalid email");
+        if (emailExists(registerRequest.email())) throw new ConflictException("Email already exists");
 
-        if (usernameExists(registerRequest.username())) throw new ConflictException("Invalid username");
+        if (usernameExists(registerRequest.username())) throw new ConflictException("Username already exists");
 
         String hashedPassword = passwordEncoder.encode(registerRequest.rawPassword());
+        UUID userId = UUID.randomUUID();
+
+        Role defaultRole = Role.USER;
 
         UserEntity user = new UserEntity(
+                userId,
                 registerRequest.username(),
                 registerRequest.email(),
                 hashedPassword,
                 registerRequest.firstname(),
-                registerRequest.lastname()
+                registerRequest.lastname(),
+                defaultRole
         );
 
         userRepo.save(user);

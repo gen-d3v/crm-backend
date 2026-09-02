@@ -38,12 +38,14 @@ public class UserEntity {
     protected UserEntity() {}
 
 
-    public UserEntity(String username, String email, String passwordHash, String firstName, String lastName) {
+    public UserEntity(UUID userId, String username, String email, String passwordHash, String firstName, String lastName, Role role) {
+        this.userId = userId;
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.role = role;
     }
 
     public Role getRole() {
