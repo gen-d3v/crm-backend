@@ -3,6 +3,7 @@ package com.crmnexus.backend.entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Worker")
 public class WorkerEntity {
 
     @Id

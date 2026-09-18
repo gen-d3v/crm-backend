@@ -1,11 +1,12 @@
 package com.crmnexus.backend.service.interfaces.worker;
 
-import com.crmnexus.backend.dto.Worker;
+import com.crmnexus.backend.dto.request.WorkerRequest;
+import com.crmnexus.backend.dto.response.WorkerResponse;
 
 public interface WorkerService {
-    Boolean createWorker(Worker worker);
-    Worker retrieveWorker(Worker worker);
-    Boolean updateWorker(Worker worker);
-    Boolean deleteWorker(Worker worker);
+    WorkerResponse createWorker(WorkerRequest worker);
+    WorkerRequest retrieveWorker(WorkerRequest worker);
+    WorkerResponse updateWorker(WorkerRequest worker);
+    WorkerResponse deleteWorker(WorkerRequest worker);
 
 }

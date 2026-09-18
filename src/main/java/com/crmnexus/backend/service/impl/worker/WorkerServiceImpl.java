@@ -1,6 +1,7 @@
 package com.crmnexus.backend.service.impl.worker;
 
-import com.crmnexus.backend.dto.Worker;
+import com.crmnexus.backend.dto.request.WorkerRequest;
+import com.crmnexus.backend.dto.response.WorkerResponse;
 import com.crmnexus.backend.service.interfaces.worker.WorkerService;
 import org.springframework.stereotype.Service;
 
@@ -8,24 +9,23 @@ import org.springframework.stereotype.Service;
 public class WorkerServiceImpl implements WorkerService {
 
 
-
     @Override
-    public Boolean createWorker(Worker worker) {
+    public WorkerResponse createWorker(WorkerRequest worker) {
         return null;
     }
 
     @Override
-    public Worker retrieveWorker(Worker worker) {
+    public WorkerRequest retrieveWorker(WorkerRequest worker) {
         return null;
     }
 
     @Override
-    public Boolean updateWorker(Worker worker) {
+    public WorkerResponse updateWorker(WorkerRequest worker) {
         return null;
     }
 
     @Override
-    public Boolean deleteWorker(Worker worker) {
+    public WorkerResponse deleteWorker(WorkerRequest worker) {
         return null;
     }
 }
