@@ -40,11 +40,6 @@ public class AccountController {
                 .body(response);
     }
 
-    @PostMapping("/test")
-    public void test() {
-        workerService.testEncryptionAndDecryption();
-
-    }
 }
 
 
