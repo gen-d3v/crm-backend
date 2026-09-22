@@ -22,11 +22,11 @@ public class WorkerController {
     }
 
 
-    @PostMapping("/create")
-    ResponseEntity<WorkerResponse> createWorker(@Valid @RequestBody WorkerRequest workerReq) {
-        WorkerResponse response = workerService.createWorker(workerReq);
-
-        return ;
-    }
+//    @PostMapping("/create")
+//    ResponseEntity<WorkerResponse> createWorker(@Valid @RequestBody WorkerRequest workerReq) {
+//        WorkerResponse response = workerService.createWorker(workerReq);
+//
+//        return
+//    }
 
     }

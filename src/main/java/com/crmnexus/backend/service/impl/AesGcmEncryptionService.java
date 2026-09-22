@@ -12,6 +12,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Base64;
 
 @Service
@@ -44,9 +45,11 @@ public class AesGcmEncryptionService implements EncryptService {
                     parameterSpec
             );
 
+
             byte[] encrypted = cipher.doFinal(
                     plainText.getBytes(StandardCharsets.UTF_8)
             );
+
 
             ByteBuffer byteBuffer = ByteBuffer.allocate(
                     iv.length + encrypted.length
@@ -54,6 +57,7 @@ public class AesGcmEncryptionService implements EncryptService {
 
             byteBuffer.put(iv);
             byteBuffer.put(encrypted);
+
 
             return Base64.getEncoder().
                     encodeToString(byteBuffer.array());
@@ -64,7 +68,60 @@ public class AesGcmEncryptionService implements EncryptService {
     }
 
     @Override
-    public String decrypt(String cipherText) {
-        return "";
+    public String decrypt(String encryptedText) {
+         try {
+
+             byte[] combinedData = Base64.getDecoder()
+                     .decode(encryptedText);
+
+
+             if (combinedData.length < IV_LENGTH + TAG_LENGTH / 8) {
+
+                 throw new IllegalStateException("Encrypted value is too short");
+             }
+
+            byte[] iv = Arrays.copyOfRange(
+                 combinedData,
+                 0,
+                 IV_LENGTH
+            );
+
+
+             byte[] cipherText = Arrays.copyOfRange(
+                     combinedData,
+                     IV_LENGTH,
+                     combinedData.length
+             );
+
+
+
+             Cipher cipher = Cipher.getInstance(ALGORITHM);
+
+
+             GCMParameterSpec parameterSpec =
+                     new GCMParameterSpec(TAG_LENGTH, iv);
+
+
+             cipher.init(
+                     Cipher.DECRYPT_MODE,
+                     secretKey,
+                     parameterSpec
+             );
+
+
+
+             byte[] plainTextBytes = cipher.doFinal(cipherText);
+
+
+             return new String(plainTextBytes, StandardCharsets.UTF_8);
+
+
+
+         }
+         catch (GeneralSecurityException | IllegalArgumentException exception) {
+             throw new IllegalStateException("Could not decrypt value", exception);
+         }
+
+
     }
 }
