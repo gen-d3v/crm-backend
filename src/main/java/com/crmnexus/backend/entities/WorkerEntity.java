@@ -1,8 +1,9 @@
 package com.crmnexus.backend.entities;
 
+import com.crmnexus.backend.enums.EmploymentType;
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name = "Worker")
 @Table(name = "Worker")
 public class WorkerEntity {
 
@@ -43,22 +44,25 @@ public class WorkerEntity {
     @Column(name = "personal_id_number")
     private String personalIdNumber;
 
+    @Column (name = "employment_type")
+    private String employmentType;
+
+
     protected WorkerEntity() {}
 
-    public WorkerEntity(String birthDate, String email, String firstName, String gender, String houseNumber, Long id,
-                        String lastName, String namePrefix, String personalIdNumber, String phoneNumber, String workerId, String zipCode) {
+    public WorkerEntity(String birthDate, String email, String firstName, String gender, String houseNumber,
+                        String lastName, String namePrefix, String personalIdNumber, String phoneNumber, String zipCode, String employmentType) {
         this.birthDate = birthDate;
         this.email = email;
         this.firstName = firstName;
         this.gender = gender;
         this.houseNumber = houseNumber;
-        this.id = id;
         this.lastName = lastName;
         this.namePrefix = namePrefix;
         this.personalIdNumber = personalIdNumber;
         this.phoneNumber = phoneNumber;
-        this.workerId = workerId;
         this.zipCode = zipCode;
+        this.employmentType = employmentType;
     }
 
     public void setId(Long id) {
@@ -156,4 +160,9 @@ public class WorkerEntity {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
+
+    public String getEmploymentType() { return employmentType; }
+
+    public void setEmploymentType(String employmentType) { this.employmentType = employmentType; }
+
 }

@@ -1,5 +1,7 @@
 package com.crmnexus.backend.dto.request;
 
+import com.crmnexus.backend.enums.EmploymentType;
+
 public record WorkerRequest(String gender,
                             String firstName,
                             String namePrefix,
@@ -9,5 +11,6 @@ public record WorkerRequest(String gender,
                             String houseNumber,
                             String phoneNumber,
                             String email,
-                            String personalIdNumber) {
+                            String personalIdNumber,
+                            EmploymentType employmentType) {
 }
