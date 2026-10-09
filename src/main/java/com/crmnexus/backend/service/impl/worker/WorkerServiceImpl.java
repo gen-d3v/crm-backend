@@ -11,6 +11,9 @@ import com.crmnexus.backend.service.impl.AesGcmEncryptionService;
 import com.crmnexus.backend.service.interfaces.worker.WorkerService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class WorkerServiceImpl implements WorkerService {
@@ -63,11 +66,33 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Override
     public GetWorkerResponse retrieveWorker(WorkerRequest worker) {
-        WorkerEntity workerEntity = workerRepo.findById(worker.id()).orElseThrow(() -> new IllegalArgumentException("No worker found"));
+        WorkerEntity workerEntity = workerRepo.findById(worker.id())
+                .orElseThrow(() -> new IllegalArgumentException("No worker found"));
+
+        return mapToResponse(workerEntity);
+    }
+
+
+    public List<GetWorkerResponse> retrieveAllWorkers() {
+        return workerRepo.findAll().stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
+
+    @Override
+    public WorkerResponse updateWorker(WorkerRequest worker) {
+        return null;
+    }
 
 
 
-        Long id = workerEntity.getId();
+    @Override
+    public WorkerResponse deleteWorker(WorkerRequest worker) {
+        return null;
+    }
+
+
+    private GetWorkerResponse mapToResponse (WorkerEntity workerEntity) {
         String decryptedGender = encryptionService.decrypt(workerEntity.getGender());
         String decryptedFirstName = encryptionService.decrypt(workerEntity.getFirstName());
 
@@ -90,7 +115,7 @@ public class WorkerServiceImpl implements WorkerService {
         EmploymentType employmentType = EmploymentType.valueOf(decryptedEmploymentType);
 
         return new GetWorkerResponse(
-                id,
+                workerEntity.getId(),
                 decryptedGender,
                 decryptedFirstName,
                 decryptedNamePrefix,
@@ -105,16 +130,5 @@ public class WorkerServiceImpl implements WorkerService {
 
         );
     }
-
-    @Override
-    public WorkerResponse updateWorker(WorkerRequest worker) {
-        return null;
-    }
-
-    @Override
-    public WorkerResponse deleteWorker(WorkerRequest worker) {
-        return null;
-    }
-
 
 }
